@@ -31,6 +31,10 @@ app.get('/healthz', (req, res) => {
   res.status(200).send('OK');
 });
 
+app.get('/ready', (req, res) => {
+    res.status(200).send('READY');
+  });
+
 app.listen(port, () => {
   console.log(`App running with name: ${appName} in ${environment} environment`);
   console.log(`API Key configured: ${apiKey !== 'no-key-provided'}`);
