@@ -97,6 +97,7 @@ Open the URL in your browser or use `curl`:
 curl http://<minikube-ip>:<nodePort>/
 curl http://<minikube-ip>:<nodePort>/check-api
 curl http://<minikube-ip>:<nodePort>/healthz
+curl http://<minikube-ip>:<nodePort>/ready
 ```
 
 ## ✅ Endpoints
@@ -106,6 +107,7 @@ curl http://<minikube-ip>:<nodePort>/healthz
 | `/`          | Returns app name & environment from ConfigMap    |
 | `/check-api` | Shows if API key is configured from Secret       |
 | `/healthz`   | Health check endpoint (`200 OK`)                |
+| `/ready`     | Readiness probe endpoint (`200 OK`)              |
 
 ## 🔥 Cheatsheet
 
