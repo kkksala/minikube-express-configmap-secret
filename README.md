@@ -17,7 +17,7 @@ It uses Kubernetes **ConfigMap** for non-sensitive settings and **Secret** for s
 - [Cheatsheet](#-cheatsheet)
 - [Note on Secret](#-note-on-secret)
 - [Docker Hub Image](#-docker-hub-image)
-- [Download Link](#-download-link)
+- [Get the Code](#-get-the-code)
 
 ## 📝 Prereqs
 
@@ -137,7 +137,7 @@ You can pull it directly using:
 docker pull ilouckov/express-k8s-app:latest
 ```
 
-## 🗂 Download Link
+## 💾 Get the Code
 
 If you want to clone the repo:
 
