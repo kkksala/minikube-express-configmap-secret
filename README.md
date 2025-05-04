@@ -27,11 +27,11 @@ It uses Kubernetes **ConfigMap** for non-sensitive settings and **Secret** for s
 
 ## 📝 Prereqs
 
-- Docker Desktop (or Docker Engine)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop) (or [Docker Engine](https://docs.docker.com/engine/))
 - [Minikube](https://minikube.sigs.k8s.io/docs/start/)
-- kubectl
-- Node.js (for local testing)
-- Docker Hub account
+- [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+- [Node.js](https://nodejs.org/en) (for local testing)
+- [Docker Hub account](https://hub.docker.com/signup)
 
 ---
 
