@@ -18,6 +18,8 @@ It uses Kubernetes **ConfigMap** for non-sensitive settings and **Secret** for s
 - [Note on Secret](#-note-on-secret)
 - [Docker Hub Image](#-docker-hub-image)
 - [Get the Code](#-get-the-code)
+- [License](#-license)
+- [Author](#-author)
 
 ## 📝 Prereqs
 
@@ -146,3 +148,15 @@ git clone https://github.com/ILXNAH/minikube-express-configmap-secret
 ```
 
 Then follow the **Quickstart** steps above!
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 👤 Author
+
+Built by [**ILXNAH**](https://github.com/ILXNAH/) as part of a hands-on DevOps assessment.
