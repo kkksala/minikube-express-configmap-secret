@@ -29,6 +29,14 @@ kubectl apply -f k8s/configmap.yaml     # Apply ConfigMap
 kubectl apply -f k8s/secret.yaml        # Apply Secret 
 kubectl apply -f k8s/deployment.yaml    # Apply Deployment 
 kubectl apply -f k8s/service.yaml       # Apply Service 
+
+kubectl delete -f k8s/                  # Clean slate, removes all resources defined in the YAMLs
+
+kubectl apply -f k8s/                   # Recreate all YAML resources
+                                        # If Deployment changes -> triggers rolling update:
+                                        # -> Kubernetes creates new pod version
+                                        # -> Gradually replaces old pod(s)
+                                        # -> Zero downtime if configured properly
 ```
 
 ## Check Resources 
@@ -37,18 +45,49 @@ kubectl apply -f k8s/service.yaml       # Apply Service
 kubectl get all                         # Verify Pods, Deployments, Service
 ```
 
-## Access the App & Test Endpoints
+## Access the App & Test the Endpoints
+--------------------------------------------------------------------
+> 🚨 **If using Minikube Docker driver (Linux), NodePort may not work directly. Always use the service tunnel.**
+
+```bash
+minikube service express-service --url  # Get external URL (dynamic port on 127.0.0.1)
+                                        # Keep the terminal open for the tunnel.
+                                        # Each time you open a new tunnel, the port may change.
+```
+
+### Example test:
+```bash
+curl http://127.0.0.1:<dynamic-port>/                  # Root endpoint (ConfigMap values)
+curl http://127.0.0.1:<dynamic-port>/check-api        # Check API_KEY from Secret
+curl http://127.0.0.1:<dynamic-port>/healthz          # Health check
+curl http://127.0.0.1:<dynamic-port>/ready            # Readiness check
+```
+
+## Access via NodePort (advanced testing — may not work with Docker driver)
 --------------------------------------------------------------------
 ```bash
-minikube service express-service --url  # Get external URL
-
-curl http://<minikube-ip>:<nodePort>/                   # Root endpoint (ConfigMap values)
-curl http://<minikube-ip>:<nodePort>/check-api          # Check API_KEY from Secret
-curl http://<minikube-ip>:<nodePort>/healthz            # Health check
+minikube ip                                # Get Minikube cluster IP
+kubectl get svc express-service            # Get Service details including NodePort
 ```
+
+### Example:
+```bash
+curl http://<minikube-ip>:<NodePort>/ready
+```
+
+> ❗ **NodePort (using minikube ip) may fail due to Docker driver network isolation.  
+> Solution: Always prefer `minikube service --url` when using Docker driver.**
 
 ## Check Pod Environment Variables 
 --------------------------------------------------------------------
 ```bash
-kubectl exec deploy/express-app -- printenv | grep API_KEY  # Outputs the secret API key in plaintext
+kubectl exec deploy/express-deployment -- printenv | grep API_KEY
+```
+*Outputs the secret API key in plaintext.*
+
+## Debugging & Troubleshooting
+--------------------------------------------------------------------
+```bash
+kubectl describe pod <pod-name>            # View pod details, including probe status and events
+kubectl logs <pod-name>                    # View application logs from inside the container
 ```
