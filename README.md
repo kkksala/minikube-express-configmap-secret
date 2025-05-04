@@ -88,7 +88,7 @@ Replace the value in `secret.yaml`.
 If you want to clone the repo:
 
 ```bash
-git clone <your-repository-link>
+git clone https://github.com/ILXNAH/minikube-express-configmap-secret
 ```
 
 Then follow the **Quickstart** steps above!
