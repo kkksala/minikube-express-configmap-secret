@@ -63,7 +63,7 @@ app.get('/ready', (req, res) => {
 /* 🖥️ START THE SERVER
    Starts the Express app and logs useful information for debugging. */
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`App running with name: ${appName} in ${environment} environment`);
   console.log(`API Key configured: ${apiKey !== 'no-key-provided'}`);
   console.log(`Server listening on port ${port}`);
