@@ -7,7 +7,7 @@ It uses Kubernetes **ConfigMap** for non-sensitive settings and **Secret** for s
 ## 📝 Prerequisites
 
 - Docker Desktop (or Docker Engine)
-- Minikube
+- [Minikube](https://minikube.sigs.k8s.io/docs/start/)
 - kubectl
 - Node.js (for local testing)
 
