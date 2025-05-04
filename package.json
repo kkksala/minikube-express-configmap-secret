@@ -1,0 +1,13 @@
+{
+    "name": "k8s-express-app",
+    "version": "1.0.0",
+    "description": "Express app for Kubernetes ConfigMap and Secret demo",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app.js"
+    },
+    "dependencies": {
+      "express": "^4.18.2"
+    }
+  }
+  
