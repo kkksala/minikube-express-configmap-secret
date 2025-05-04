@@ -16,6 +16,7 @@ It uses Kubernetes **ConfigMap** for non-sensitive settings and **Secret** for s
 - [Endpoints](#-endpoints)
 - [Cheatsheet](#-cheatsheet)
 - [Note on Secret](#-note-on-secret)
+- [Docker Hub Image](#-docker-hub-image)
 - [Download Link](#-download-link)
 
 ## 📝 Prerequisites
@@ -121,6 +122,18 @@ echo -n 'YourSecretValueHere' | base64
 ```
 
 Replace the value in `secret.yaml`.
+
+## 🐳 Docker Hub Image
+
+The Docker image for this app is publicly available at:
+
+[**ilouckov/express-k8s-app**](https://hub.docker.com/r/ilouckov/express-k8s-app)
+
+You can pull it directly using:
+
+```bash
+docker pull ilouckov/express-k8s-app:latest
+```
 
 ## 🗂 Download Link
 
