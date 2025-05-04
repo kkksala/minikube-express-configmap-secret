@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: express-app
+  name: express-app                               # Name of the Deployment
 spec:
-  replicas: 1
+  replicas: 1                                     # Number of app instances (can increase for scaling)
   selector:
     matchLabels:
-      app: express-app
+      app: express-app                            # Must match the labels in the pod template below
   template:
     metadata:
       labels:
-        app: express-app
+        app: express-app                          # Label used by Service and ReplicaSet
     spec:
       containers:
-      - name: express-container
-        image: ilouckov/express-k8s-app:latest
+      - name: express-container                   # Name of the container
+        image: ilouckov/express-k8s-app:latest    # Docker image (update if image changes!)
         ports:
-        - containerPort: 3000
+        - containerPort: 3000                     # Port your app listens to *inside the container*
         env:
         - name: APP_NAME
           valueFrom:

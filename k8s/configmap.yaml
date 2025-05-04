@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: app-config
+  name: app-config                                # Name of the ConfigMap (referenced in deployment.yaml)
 data:
-  APP_NAME: "K8s Demo App"
-  ENVIRONMENT: "production"
+  APP_NAME: "K8s Demo App"                        # Application name (non-sensitive)
+  ENVIRONMENT: "production"                       # Environment (non-sensitive)
