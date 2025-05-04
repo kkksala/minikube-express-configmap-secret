@@ -4,6 +4,8 @@
 This project demonstrates deploying a simple Express.js application to a Minikube cluster.  
 It uses Kubernetes **ConfigMap** for non-sensitive settings and **Secret** for sensitive data.
 
+---
+
 ## 📚 Table of Contents
 
 - [Prereqs](#-prereqs)
@@ -21,6 +23,8 @@ It uses Kubernetes **ConfigMap** for non-sensitive settings and **Secret** for s
 - [License](#-license)
 - [Author](#-author)
 
+---
+
 ## 📝 Prereqs
 
 - Docker Desktop (or Docker Engine)
@@ -28,6 +32,8 @@ It uses Kubernetes **ConfigMap** for non-sensitive settings and **Secret** for s
 - kubectl
 - Node.js (for local testing)
 - Docker Hub account
+
+---
 
 ## 📁 Project Structure
 
@@ -44,6 +50,8 @@ It uses Kubernetes **ConfigMap** for non-sensitive settings and **Secret** for s
 └── README.md
 └── K8S-CHEATSHEET.md
 ```
+
+---
 
 ## 🚀 Quickstart
 
@@ -102,6 +110,8 @@ curl http://<minikube-ip>:<nodePort>/healthz
 curl http://<minikube-ip>:<nodePort>/ready
 ```
 
+---
+
 ## ✅ Endpoints
 
 | Endpoint     | Description                                     |
@@ -111,9 +121,13 @@ curl http://<minikube-ip>:<nodePort>/ready
 | `/healthz`   | Health check endpoint (`200 OK`)                |
 | `/ready`     | Readiness probe endpoint (`200 OK`)              |
 
+---
+
 ## 🔥 Cheatsheet
 
 See [K8S-CHEATSHEET.md](./K8S-CHEATSHEET.md) for quick reference commands and testing.
+
+---
 
 ## 🔑 Note on Secret
 
@@ -127,6 +141,8 @@ echo -n 'YourSecretValueHere' | base64
 
 Replace the value in `secret.yaml`.
 
+---
+
 ## 🐳 Docker Hub Image
 
 The Docker image for this app is publicly available at:
@@ -138,6 +154,8 @@ You can pull it directly using:
 ```bash
 docker pull ilouckov/express-k8s-app:latest
 ```
+
+---
 
 ## 💾 Get the Code
 
