@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: express-app                               # Name of the Deployment
+  name: express-deployment                        # Name of the Deployment
 spec:
   replicas: 1                                     # Number of app instances (can increase for scaling)
   selector:
@@ -17,19 +17,46 @@ spec:
         image: ilouckov/express-k8s-app:latest    # Docker image (update if image changes!)
         ports:
         - containerPort: 3000                     # Port your app listens to *inside the container*
+
+        # 🔑 Environment variables from ConfigMap and Secret
         env:
         - name: APP_NAME
           valueFrom:
             configMapKeyRef:
-              name: app-config
-              key: APP_NAME
+              name: app-config                    # Name of the ConfigMap
+              key: APP_NAME                       # Key inside the ConfigMap
         - name: ENVIRONMENT
           valueFrom:
             configMapKeyRef:
-              name: app-config
-              key: ENVIRONMENT
+              name: app-config                    # Name of the ConfigMap
+              key: ENVIRONMENT                    # Key inside the ConfigMap
         - name: API_KEY
           valueFrom:
             secretKeyRef:
-              name: app-secret
-              key: API_KEY
+              name: app-secret                    # Name of the Secret
+              key: API_KEY                        # Key inside the Secret
+
+        # 🔧 Resource requests and limits (helps Kubernetes with scheduling and stability)
+        resources:
+          requests:
+            memory: "64Mi"                        # Minimum memory requested
+            cpu: "250m"                           # Minimum CPU requested
+          limits:
+            memory: "128Mi"                       # Maximum memory allowed
+            cpu: "500m"                           # Maximum CPU allowed
+
+        # ❤️ Liveness Probe (Kubernetes restarts the container if this check fails)
+        livenessProbe:
+          httpGet:
+            path: /healthz                        # Endpoint your app must expose
+            port: 3000
+          initialDelaySeconds: 15                 # Wait time before the first check
+          periodSeconds: 20                       # Check interval
+
+        # 💚 Readiness Probe (Marks pod "ready" for traffic only when this check passes)
+        readinessProbe:
+          httpGet:
+            path: /ready                          # Another endpoint your app must expose
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 10
