@@ -6,7 +6,7 @@ It uses Kubernetes **ConfigMap** for non-sensitive settings and **Secret** for s
 
 ## 📚 Table of Contents
 
-- [Prerequisites](#-prerequisites)
+- [Prereqs](#-prereqs)
 - [Project Structure](#-project-structure)
 - [Quickstart](#-quickstart)
   - [1️⃣ Start Minikube](#1️⃣-start-minikube)
@@ -19,7 +19,7 @@ It uses Kubernetes **ConfigMap** for non-sensitive settings and **Secret** for s
 - [Docker Hub Image](#-docker-hub-image)
 - [Download Link](#-download-link)
 
-## 📝 Prerequisites
+## 📝 Prereqs
 
 - Docker Desktop (or Docker Engine)
 - [Minikube](https://minikube.sigs.k8s.io/docs/start/)
