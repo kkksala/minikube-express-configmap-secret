@@ -42,9 +42,9 @@ kubectl get all                         # Verify Pods, Deployments, Service
 ```bash
 minikube service express-service --url  # Get external URL
 
-curl http://URL:PORT/                   # Root endpoint (ConfigMap values)
-curl http://URL:PORT/check-api          # Check API_KEY from Secret
-curl http://URL:PORT/healthz            # Health check
+curl http://<minikube-ip>:<nodePort>/                   # Root endpoint (ConfigMap values)
+curl http://<minikube-ip>:<nodePort>/check-api          # Check API_KEY from Secret
+curl http://<minikube-ip>:<nodePort>/healthz            # Health check
 ```
 
 ## Check Pod Environment Variables 

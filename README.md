@@ -4,12 +4,27 @@
 This project demonstrates deploying a simple Express.js application to a Minikube cluster.  
 It uses Kubernetes **ConfigMap** for non-sensitive settings and **Secret** for sensitive data.
 
+## 📚 Table of Contents
+
+- [Prerequisites](#-prerequisites)
+- [Project Structure](#-project-structure)
+- [Quickstart](#-quickstart)
+  - [1️⃣ Start Minikube](#1️⃣-start-minikube)
+  - [2️⃣ Build Docker Image & Load into Minikube](#2️⃣-build-docker-image--load-into-minikube-optional-if-using-docker-hub-image)
+  - [3️⃣ Deploy Kubernetes Resources](#3️⃣-deploy-kubernetes-resources)
+  - [4️⃣ Access the Application](#4️⃣-access-the-application)
+- [Endpoints](#-endpoints)
+- [Cheatsheet](#-cheatsheet)
+- [Note on Secret](#-note-on-secret)
+- [Download Link](#-download-link)
+
 ## 📝 Prerequisites
 
 - Docker Desktop (or Docker Engine)
 - [Minikube](https://minikube.sigs.k8s.io/docs/start/)
 - kubectl
 - Node.js (for local testing)
+- Docker Hub account
 
 ## 📁 Project Structure
 
@@ -24,6 +39,7 @@ It uses Kubernetes **ConfigMap** for non-sensitive settings and **Secret** for s
 │   ├── deployment.yaml
 │   └── service.yaml
 └── README.md
+└── K8S-CHEATSHEET.md
 ```
 
 ## 🚀 Quickstart
@@ -34,11 +50,23 @@ It uses Kubernetes **ConfigMap** for non-sensitive settings and **Secret** for s
 minikube start
 ```
 
-### 2️⃣ Build Docker Image & Load into Minikube
+✅ Check node is ready:
+
+```bash
+kubectl get nodes
+```
+
+### 2️⃣ Build Docker Image & Load into Minikube (Optional if using Docker Hub image)
 
 ```bash
 eval $(minikube docker-env)
 docker build -t express-k8s-app:latest .
+```
+
+If using Docker Hub image (recommended for portability), ensure your `deployment.yaml` uses:
+
+```yaml
+image: ilouckov/express-k8s-app:latest
 ```
 
 ### 3️⃣ Deploy Kubernetes Resources
@@ -50,6 +78,12 @@ kubectl apply -f k8s/deployment.yaml
 kubectl apply -f k8s/service.yaml
 ```
 
+✅ Check resources:
+
+```bash
+kubectl get all
+```
+
 ### 4️⃣ Access the Application
 
 ```bash
@@ -59,17 +93,22 @@ minikube service express-service --url
 Open the URL in your browser or use `curl`:
 
 ```bash
-curl <URL>/
-curl <URL>/check-api
+curl http://<minikube-ip>:<nodePort>/
+curl http://<minikube-ip>:<nodePort>/check-api
+curl http://<minikube-ip>:<nodePort>/healthz
 ```
 
 ## ✅ Endpoints
 
-| Endpoint     | Description                        |
-| ------------ | ----------------------------------|
-| `/`          | Returns app name & environment     |
-| `/check-api` | Shows if API key is configured     |
-| `/healthz`   | Health check endpoint (`200 OK`)   |
+| Endpoint     | Description                                     |
+| ------------ | ----------------------------------------------- |
+| `/`          | Returns app name & environment from ConfigMap    |
+| `/check-api` | Shows if API key is configured from Secret       |
+| `/healthz`   | Health check endpoint (`200 OK`)                |
+
+## 🔥 Cheatsheet
+
+See [K8S-CHEATSHEET.md](./K8S-CHEATSHEET.md) for quick reference commands and testing.
 
 ## 🔑 Note on Secret
 
