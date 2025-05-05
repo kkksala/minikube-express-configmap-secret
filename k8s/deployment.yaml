@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: express-app                            # Must match the labels in the pod template below
-  template:
+  template:                                       # <--- This is the pod template
     metadata:
       labels:
         app: express-app                          # Label used by Service and ReplicaSet
