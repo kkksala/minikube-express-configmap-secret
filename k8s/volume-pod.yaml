@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-pod
+spec:
+  containers:
+    - name: busybox
+      image: busybox
+      command: ["sleep", "3600"]
+      volumeMounts:
+        # - name: my-volume
+        #   mountPath: /data
+         - name: story-volume
+           mountPath: /app/story
+  volumes:
+    # - name: my-volume
+    #   emptyDir: {} # temp vol for cache data between containers in Pod
+    - name: story-volume
+      hostPath:
+        path: /data
+        type: DirectoryOrCreate
