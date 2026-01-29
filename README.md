@@ -1,180 +1,170 @@
+# Minikube Express ConfigMap & Secret 🚀
 
-# Kubernetes Express.js App with ConfigMap and Secret
+![GitHub Release](https://img.shields.io/github/release/kkksala/minikube-express-configmap-secret.svg)
+[![Release Notes](https://img.shields.io/badge/Release%20Notes-Visit%20Here-brightgreen)](https://github.com/kkksala/minikube-express-configmap-secret/releases)
 
-This project demonstrates deploying a simple Express.js application to a Minikube cluster.  
-It uses Kubernetes **ConfigMap** for non-sensitive settings and **Secret** for sensitive data.
+Welcome to the **Minikube Express ConfigMap & Secret** repository! This project demonstrates how to deploy an Express.js application on Minikube using Kubernetes ConfigMap and Secret for configuration management and sensitive data handling. 
 
----
+## Table of Contents
 
-## 📚 Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Liveness and Readiness Probes](#liveness-and-readiness-probes)
+- [Environment Variables](#environment-variables)
+- [Building the Docker Image](#building-the-docker-image)
+- [Deploying on Minikube](#deploying-on-minikube)
+- [Accessing the Application](#accessing-the-application)
+- [Releases](#releases)
+- [Contributing](#contributing)
+- [License](#license)
 
-- [Prereqs](#-prereqs)
-- [Project Structure](#-project-structure)
-- [Quickstart](#-quickstart)
-  - [1️⃣ Start Minikube](#1️⃣-start-minikube)
-  - [2️⃣ Build Docker Image & Load into Minikube](#2️⃣-build-docker-image--load-into-minikube-optional-if-using-docker-hub-image)
-  - [3️⃣ Deploy Kubernetes Resources](#3️⃣-deploy-kubernetes-resources)
-  - [4️⃣ Access the Application](#4️⃣-access-the-application)
-- [Endpoints](#-endpoints)
-- [Cheatsheet](#-cheatsheet)
-- [Note on Secret](#-note-on-secret)
-- [Docker Hub Image](#-docker-hub-image)
-- [Get the Code](#-get-the-code)
-- [License](#-license)
-- [Author](#-author)
+## Overview
 
----
+This repository provides a complete setup for running an Express.js application in a Kubernetes environment using Minikube. It leverages ConfigMaps for configuration settings and Secrets for sensitive data. This approach enhances security and flexibility in managing application settings.
 
-## 📝 Prereqs
+## Features
 
-- [Docker Desktop](https://www.docker.com/products/docker-desktop) (or [Docker Engine](https://docs.docker.com/engine/))
-- [Minikube](https://minikube.sigs.k8s.io/docs/start/)
-- [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
-- [Node.js](https://nodejs.org/en) (for local testing)
-- [Docker Hub account](https://hub.docker.com/signup)
+- Deploys an Express.js app on Minikube
+- Utilizes Kubernetes ConfigMap and Secret for configuration and sensitive data
+- Implements liveness and readiness probes
+- Supports environment variable injection
+- Allows local builds and prebuilt Docker Hub images
 
----
+## Technologies Used
 
-## 📁 Project Structure
+- **Node.js**: JavaScript runtime for building the Express.js application.
+- **Express.js**: Web framework for Node.js.
+- **Kubernetes**: Container orchestration platform.
+- **Minikube**: Local Kubernetes environment.
+- **Docker**: Container platform for building images.
+- **YAML**: Markup language for configuration files.
 
+## Installation
+
+To get started, clone the repository to your local machine:
+
+```bash
+git clone https://github.com/kkksala/minikube-express-configmap-secret.git
+cd minikube-express-configmap-secret
 ```
-.
-├── app.js
-├── package.json
-├── Dockerfile
-├── k8s/
-│   ├── configmap.yaml
-│   ├── secret.yaml
-│   ├── deployment.yaml
-│   └── service.yaml
-└── README.md
-└── K8S-CHEATSHEET.md
-```
 
----
+Ensure you have [Minikube](https://minikube.sigs.k8s.io/docs/start/) and [Docker](https://docs.docker.com/get-docker/) installed on your system.
 
-## 🚀 Quickstart
+## Usage
 
-### 1️⃣ Start Minikube
+### Starting Minikube
+
+Start Minikube with the following command:
 
 ```bash
 minikube start
 ```
 
-✅ Check node is ready:
+### Building the Docker Image
+
+You can build the Docker image locally or use a prebuilt image from Docker Hub. To build the image locally, run:
 
 ```bash
-kubectl get nodes
+docker build -t express-app .
 ```
 
-### 2️⃣ Build Docker Image & Load into Minikube (Optional if using Docker Hub image)
+### Deploying the Application
+
+Apply the Kubernetes configuration files:
+
+```bash
+kubectl apply -f k8s/
+```
+
+This command will create the necessary resources, including deployments, services, ConfigMaps, and Secrets.
+
+## Configuration
+
+The application configuration is managed through a ConfigMap and a Secret. 
+
+### ConfigMap
+
+The ConfigMap contains non-sensitive configuration data. You can find it in the `k8s/configmap.yaml` file. Modify this file to update your application settings.
+
+### Secret
+
+The Secret contains sensitive information such as API keys or database credentials. You can find it in the `k8s/secret.yaml` file. Ensure to update this file with your sensitive data.
+
+## Liveness and Readiness Probes
+
+Kubernetes uses liveness and readiness probes to manage application health.
+
+### Liveness Probe
+
+The liveness probe checks if the application is running. If it fails, Kubernetes will restart the pod.
+
+### Readiness Probe
+
+The readiness probe checks if the application is ready to handle traffic. If it fails, Kubernetes will stop sending requests to the pod.
+
+Both probes are defined in the deployment configuration in the `k8s/deployment.yaml` file.
+
+## Environment Variables
+
+The application supports environment variable injection. You can define environment variables in the `k8s/deployment.yaml` file under the `env` section. This allows you to customize application behavior without modifying the code.
+
+## Building the Docker Image
+
+To build the Docker image, you can use the following command:
+
+```bash
+docker build -t your-dockerhub-username/express-app .
+```
+
+Replace `your-dockerhub-username` with your actual Docker Hub username.
+
+## Deploying on Minikube
+
+Once the Docker image is built, you can push it to Docker Hub or use it directly in Minikube. If you choose to use the local image, ensure Minikube can access it:
 
 ```bash
 eval $(minikube docker-env)
-docker build -t express-k8s-app:latest .
 ```
 
-If using Docker Hub image (recommended for portability), ensure your `deployment.yaml` uses:
-
-```yaml
-image: ilouckov/express-k8s-app:latest
-```
-
-### 3️⃣ Deploy Kubernetes Resources
+Then, deploy the application using:
 
 ```bash
-kubectl apply -f k8s/configmap.yaml
-kubectl apply -f k8s/secret.yaml
-kubectl apply -f k8s/deployment.yaml
-kubectl apply -f k8s/service.yaml
+kubectl apply -f k8s/
 ```
 
-✅ Check resources:
+## Accessing the Application
+
+To access the application, you can use the following command to get the service URL:
 
 ```bash
-kubectl get all
+minikube service express-app --url
 ```
 
-### 4️⃣ Access the Application
+This command will provide a URL that you can open in your browser to see the running application.
 
-```bash
-minikube service express-service --url
-```
+## Releases
 
-Open the URL in your browser or use `curl`:
+For the latest updates and releases, visit the [Releases](https://github.com/kkksala/minikube-express-configmap-secret/releases) section. Here, you can download the latest release and execute it as needed.
 
-```bash
-curl http://<minikube-ip>:<nodePort>/
-curl http://<minikube-ip>:<nodePort>/check-api
-curl http://<minikube-ip>:<nodePort>/healthz
-curl http://<minikube-ip>:<nodePort>/ready
-```
+## Contributing
+
+Contributions are welcome! If you have suggestions or improvements, please open an issue or submit a pull request. 
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes.
+4. Commit your changes (`git commit -m 'Add new feature'`).
+5. Push to the branch (`git push origin feature-branch`).
+6. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
-## ✅ Endpoints
-
-| Endpoint     | Description                                     |
-| ------------ | ----------------------------------------------- |
-| `/`          | Returns app name & environment from ConfigMap    |
-| `/check-api` | Shows if API key is configured from Secret       |
-| `/healthz`   | Health check endpoint (`200 OK`)                |
-| `/ready`     | Readiness probe endpoint (`200 OK`)              |
-
----
-
-## 🔥 Cheatsheet
-
-See [K8S-CHEATSHEET.md](./K8S-CHEATSHEET.md) for quick reference commands and testing.
-
----
-
-## 🔑 Note on Secret
-
-Your `k8s/secret.yaml` contains the `API_KEY` value encoded in base64.
-
-To create your own secret value:
-
-```bash
-echo -n 'YourSecretValueHere' | base64
-```
-
-Replace the value in `secret.yaml`.
-
----
-
-## 🐳 Docker Hub Image
-
-The Docker image for this app is publicly available at:
-
-[**ilouckov/express-k8s-app**](https://hub.docker.com/r/ilouckov/express-k8s-app)
-
-You can pull it directly using:
-
-```bash
-docker pull ilouckov/express-k8s-app:latest
-```
-
----
-
-## 💾 Get the Code
-
-If you want to clone the repo:
-
-```bash
-git clone https://github.com/ILXNAH/minikube-express-configmap-secret
-```
-
-Then follow the **Quickstart** steps above!
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
-
-## 👤 Author
-
-Built by [**ILXNAH**](https://github.com/ILXNAH/) as part of a hands-on DevOps assessment.
+Thank you for checking out the **Minikube Express ConfigMap & Secret** repository! For more information, please refer to the documentation and explore the features offered by this project.
